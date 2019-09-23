@@ -31,7 +31,7 @@ if ( lastSuccessfullBuild(currentBuild.getPreviousBuild()) != null) {
 		def LastGoodBuild = lastSuccessfullBuild(currentBuild.getPreviousBuild()); 
 		echo "Last successful Build ID is:  ${LastGoodBuild}" 
 	} else {
-		def LastGoodBuild = 0;
+		def LastGoodBuild = "0";
 		print LastGoodBuild;
 	}
 
