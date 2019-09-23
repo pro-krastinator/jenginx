@@ -19,7 +19,7 @@ def LastGoodBuild = 0;
 catchError(buildResult: 'SUCCESS') {
   LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number !=null ? Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number : "0";
   currentBuild.result = 'SUCCESS'
-  return
+  sh 'exit 0'  
 }
 
 
