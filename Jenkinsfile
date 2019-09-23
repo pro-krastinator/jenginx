@@ -15,9 +15,11 @@ while (build != null) {
       build = build.previousBuild
 }
 */
-
+def LastGoodBuild = 0;
 catchError(buildResult: 'SUCCESS') {
-def LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number !=null ? Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number : "0";
+  LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number !=null ? Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number : "0";
+  currentBuild.result = 'SUCCESS'
+  return
 }
 
 
