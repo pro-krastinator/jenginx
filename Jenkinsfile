@@ -4,21 +4,6 @@ echo "${JOB_NAME}"
 def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
-//def LastGoodBuild = 0
-/*
-def LastGoodBuild(build) {
-    if(build != null && build.result != 'FAILURE') {
-        //Recurse now to handle in chronological order
-        LastGoodBuild(build.getPreviousBuild());
-        //Add the build to the array
-        return;
-    } else {
-         LastGoodBuild = 0
-      }
-}
-LastGoodBuild(currentBuild.getPreviousBuild());
-*/
-
 
 def test_job = Jenkins.instance.getItemByFullName("$JOB_NAME")
 
@@ -26,19 +11,6 @@ LastGoodBuild = test_job.getLastSuccessfulBuild().getNumber()
 
 println LastGoodBuild
 
-//////////////
-/*
-catchError(buildResult: 'SUCCESS') {
-if ( currentBuild.getPreviousBuild != null) {
-		def LastGoodBuild = lastSuccessfullBuild(currentBuild.getPreviousBuild()); 
-		echo "Last successful Build ID is:  ${LastGoodBuild}" 
-	} else {
-		def LastGoodBuild = "0";
-		print LastGoodBuild;
-	}
-}
-*/
-///////////
 
 pipeline {
     options {
