@@ -5,9 +5,9 @@ def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
 
-def test_job = Jenkins.instance.getItemByFullName("$JOB_NAME")
+def this_job = Jenkins.instance.getItemByFullName("$JOB_NAME")
 
-LastGoodBuild = test_job.getLastSuccessfulBuild().getNumber()   
+def LastGoodBuild = this_job.getLastSuccessfulBuild().getNumber() != null ? this_job.getLastSuccessfulBuild().getNumber() : "0"
 
 println LastGoodBuild
 
