@@ -1,11 +1,11 @@
 import jenkins.model.Jenkins
 echo "${JOB_NAME}"
 
-//def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
+def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
 //def LastGoodBuild = 0
-def LastGoodBuild = build.getProject().getLastSuccessfulBuild() ?: "0"
+def LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number ?: "0"
 
 echo "Last successful Build ID is:  ${LastGoodBuild}"
 
