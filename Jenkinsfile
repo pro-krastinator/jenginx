@@ -15,7 +15,7 @@ def job = jenkins.getItem("${JOB_NAME}")
 //if ( LastGoodBuild == null ) {
 //   LastGoodBuild = 0 
 //} 
-
+LastGoodBuild = 0
 println LastGoodBuild
 
 /*
