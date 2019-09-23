@@ -15,7 +15,7 @@ while (build != null) {
       build = build.previousBuild
 }
 */
-if ( lastSuccessfulBuild == null || lastSuccessfulBuild.number == 0 ) {
+if ( Jenkins.instance.getItem("${JOB_NAME}")lastSuccessfulBuild == null || Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number == 0 ) {
     def LastGoodBuild = 0
 } else {
     def LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number;
