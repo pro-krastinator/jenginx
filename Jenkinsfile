@@ -18,7 +18,6 @@ def LastGoodBuild(build) {
 }
 LastGoodBuild(currentBuild.getPreviousBuild());
 */
-catchError(buildResult: 'SUCCESS') {
 passedBuilds = []
 def lastSuccessfullBuild(build) {
     if(build != null && build.result != 'FAILURE') {
@@ -29,6 +28,7 @@ def lastSuccessfullBuild(build) {
     }
 }
 lastSuccessfullBuild(currentBuild.getPreviousBuild());
+catchError(buildResult: 'SUCCESS') {
 if ( lastSuccessfullBuild(currentBuild.getPreviousBuild()) != null) {
 		def LastGoodBuild = lastSuccessfullBuild(currentBuild.getPreviousBuild()); 
 		echo "Last successful Build ID is:  ${LastGoodBuild}" 
