@@ -4,19 +4,8 @@ echo "${JOB_NAME}"
 //def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
-def LastGoodBuild = 0
-//catchError(buildResult: 'SUCCESS') {
-def build = currentBuild.previousBuild ?: "0"
-while (build != null) {
-      if (build.result == "SUCCESS")
-      {
-          LastGoodBuild = build.id as Integer
-          break
-      }
-      build = build.previousBuild
-}
-sh 'exit 0'
-//}
+//def LastGoodBuild = 0
+def LastGoodBuild = build.getProject().getLastSuccessfulBuild() ?: "0"
 
 echo "Last successful Build ID is:  ${LastGoodBuild}"
 
