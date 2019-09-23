@@ -118,6 +118,8 @@ pipeline {
                     echo "Variable siteContentCheckResult is ${siteContentCheckResult}"
                     if ( siteContentCheckResult == 0 ) {
                        echo 'GREAT! We do not need to rollback!'
+                       echo "Feel free to check our siter here:"
+                       sh (script: 'echo "http://$(curl -s icanhazip.com):8082"')
                        currentBuild.result = 'SUCCESS'
                        RollBackCheck = 0
                        return
