@@ -15,10 +15,12 @@ while (build != null) {
       build = build.previousBuild
 }
 */
+def LastGoodBuild = 0
+
 if ( Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild == null || Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number == 0 ) {
-    def LastGoodBuild = 0
+    LastGoodBuild = 0
 } else {
-    def LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number;
+    LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number;
 }
 echo "Last Goodd Build ID: ${LastGoodBuild}"
 
