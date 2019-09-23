@@ -12,7 +12,7 @@ def jenkins = Jenkins.getInstance()
 //def jobName = "${DEV_PROJECT_NAME}"
 def job = jenkins.getItem("${JOB_NAME}")
 LastGoodBuild = ${job.getLastSuccessfulBuild()}
-if ( $LastGoodBuild == null ) {
+if ( LastGoodBuild == null ) {
    LastGoodBuild = 0 
 } 
 
