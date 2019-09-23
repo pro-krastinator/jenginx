@@ -18,18 +18,18 @@ def LastGoodBuild(build) {
 }
 LastGoodBuild(currentBuild.getPreviousBuild());
 */
-passedBuilds = []
-def lastSuccessfullBuild(build) {
-    if(build != null && build.result != 'FAILURE') {
-        //Recurse now to handle in chronological order
-        lastSuccessfullBuild(build.getPreviousBuild());
-        //Add the build to the array
-        passedBuilds.add(build);
-    }
-}
-lastSuccessfullBuild(currentBuild.getPreviousBuild());
+
+
+def test_job = Jenkins.instance.getItemByFullName("$JOB_NAME")
+
+LastGoodBuild = test_job.getLastSuccessfulBuild().getNumber()   
+
+println LastGoodBuild
+
+//////////////
+/*
 catchError(buildResult: 'SUCCESS') {
-if ( lastSuccessfullBuild(currentBuild.getPreviousBuild()) != null) {
+if ( currentBuild.getPreviousBuild != null) {
 		def LastGoodBuild = lastSuccessfullBuild(currentBuild.getPreviousBuild()); 
 		echo "Last successful Build ID is:  ${LastGoodBuild}" 
 	} else {
@@ -37,6 +37,9 @@ if ( lastSuccessfullBuild(currentBuild.getPreviousBuild()) != null) {
 		print LastGoodBuild;
 	}
 }
+*/
+///////////
+
 pipeline {
     options {
         timestamps()
