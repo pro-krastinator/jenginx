@@ -15,7 +15,9 @@ def job = jenkins.getItem("${JOB_NAME}")
 //if ( LastGoodBuild == null ) {
 //   LastGoodBuild = 0 
 //} 
+echo 'LastGoodBuild = 0'
 LastGoodBuild = 0
+echo 'println LastGoodBuild'
 println LastGoodBuild
 
 /*
