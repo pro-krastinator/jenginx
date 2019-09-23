@@ -3,13 +3,18 @@ echo "${JOB_NAME}"
 
 echo "n {currentBuild.previousBuild.number}"
 echo "b {currentBuild.previousBuild}"
-
+try {
 if (currentBuild.previousBuild.number != null || currentBuild.previousBuild != null ) {
    def PrevBuildNum = currentBuild.previousBuild.number
 } else {
    def PrevBuildNum = 0
 }
-
+}
+catchError(buildResult: 'SUCCESS') {
+    PrevBuildNum = 0
+    echo "${PrevBuildNum = 0}"
+}
+*/
 def CurrBuild = currentBuild.number;
 /*
 def LastGoodBuild = 0;
@@ -47,7 +52,7 @@ pipeline {
             steps {
                 sh 'nginx -v'
                 echo "Jenkins BUILD_NUMBER is ${BUILD_NUMBER}"
-                print PrevBuildNum
+                //print PrevBuildNum
                 echo "Currend build - ${CurrBuild}"
                 echo "LastGoodBuild - ${LastGoodBuild}"
             }
