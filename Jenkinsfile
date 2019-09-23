@@ -16,6 +16,10 @@ while (build != null) {
 }
 */
 
+def LastGoodBuild  = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number;
+if (!LastGoodBuild || LastGoodBuild !=null) {
+	LastGoodBuild = 0
+} 
 
 /*
 def LastGoodBuild = 0;
@@ -29,7 +33,6 @@ catchError(buildResult: 'SUCCESS') {
 echo "Last Goodd Build ID: ${LastGoodBuild}"
 
 pipeline {
-    LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number !=null ? Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number : "0";
     options {
         timestamps()
     }
