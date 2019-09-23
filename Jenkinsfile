@@ -16,6 +16,8 @@ if ( LastGoodBuild == null ) {
    LastGoodBuild = 0 
 } 
 
+println LastGoodBuild
+
 /*
 if ( Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number !=NULL ) {
    def LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number;
