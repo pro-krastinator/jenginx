@@ -7,6 +7,9 @@ echo "${JOB_NAME}"
 def PrevBuildNum = currentBuild.previousBuild.number;
 def CurrBuild = currentBuild.number;
 
+def PrevBuildNum = currentBuild.previousBuild.number;
+def CurrBuild = currentBuild.number;
+def LastGoodBuild = "0";
 
 //def jenkins = Jenkins.getInstance()
 //def jobName = "${DEV_PROJECT_NAME}"
@@ -20,16 +23,16 @@ def CurrBuild = currentBuild.number;
 //echo 'println LastGoodBuild'
 //println LastGoodBuild
 
-echo "${Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number}"
+//echo "${Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number}"
+catchError(buildResult: 'SUCCESS') {
+    // some block
 
 if ( Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number ) {
-   def LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number 
+   LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number 
 } else {
-   def LastGoodBuild = 0
+   LastGoodBuild = "0"
 }
-
-
-//def BuildNum = CurrBuild
+}
 pipeline {
     options {
         timestamps()
