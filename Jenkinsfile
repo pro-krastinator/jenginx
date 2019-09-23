@@ -4,10 +4,20 @@ echo "${JOB_NAME}"
 def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
-def LastGoodBuild = 0
-try {
-LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number ?: "0"
+//def LastGoodBuild = 0
+
+def LastGoodBuild(build) {
+    if(build != null && build.result != 'FAILURE') {
+        //Recurse now to handle in chronological order
+        LastGoodBuild(build.getPreviousBuild());
+        //Add the build to the array
+        return;
+    } else {
+         LastGoodBuild = 0
+      }
 }
+LastGoodBuild(currentBuild.getPreviousBuild());
+
 catch (exc) {
 echo "Last successful Build ID is:  ${LastGoodBuild}" 
 sh 'exit 0'
