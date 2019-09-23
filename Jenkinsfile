@@ -6,7 +6,7 @@ echo "${JOB_NAME}"
 
 def PrevBuildNum = currentBuild.previousBuild.number;
 def CurrBuild = currentBuild.number;
-
+LastGoodBuild = 0 
 def LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number;
 
 //def BuildNum = CurrBuild
