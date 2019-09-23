@@ -3,7 +3,7 @@ echo "${JOB_NAME}"
 
 def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
-
+/*
 def LastGoodBuild = 0;
 def build = currentBuild.previousBuild ?: "0"
 while (build != null) {
@@ -14,6 +14,12 @@ while (build != null) {
       }
       build = build.previousBuild
 }
+*/
+
+catchError(buildResult: 'SUCCESS') {
+def LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number !=null ? Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number : "0";
+}
+
 
 echo "Last Goodd Build ID: ${LastGoodBuild}"
 
