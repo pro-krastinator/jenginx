@@ -5,7 +5,7 @@ def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
 //def LastGoodBuild = 0
-
+/*
 def LastGoodBuild(build) {
     if(build != null && build.result != 'FAILURE') {
         //Recurse now to handle in chronological order
@@ -17,11 +17,20 @@ def LastGoodBuild(build) {
       }
 }
 LastGoodBuild(currentBuild.getPreviousBuild());
-
-catch (exc) {
-echo "Last successful Build ID is:  ${LastGoodBuild}" 
-sh 'exit 0'
+*/
+passedBuilds = []
+def lastSuccessfullBuild(build) {
+    if(build != null && build.result != 'FAILURE') {
+        //Recurse now to handle in chronological order
+        lastSuccessfullBuild(build.getPreviousBuild());
+        //Add the build to the array
+        passedBuilds.add(build);
+    }
 }
+lastSuccessfullBuild(currentBuild.getPreviousBuild());
+def LastGoodBuild = lastSuccessfullBuild(currentBuild.getPreviousBuild());
+echo "Last successful Build ID is:  ${LastGoodBuild}" 
+
 pipeline {
     options {
         timestamps()
