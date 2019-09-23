@@ -1,12 +1,11 @@
 import jenkins.model.Jenkins
 echo "${JOB_NAME}"
-pipeline {
-   script {
-def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
+
+//def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
 def LastGoodBuild = 0
-catchError(buildResult: 'SUCCESS') {
+//catchError(buildResult: 'SUCCESS') {
 def build = currentBuild.previousBuild ?: "0"
 while (build != null) {
       if (build.result == "SUCCESS")
@@ -17,11 +16,11 @@ while (build != null) {
       build = build.previousBuild
 }
 sh 'exit 0'
-}
-}
+//}
+
 echo "Last successful Build ID is:  ${LastGoodBuild}"
-}
-//pipeline {
+
+pipeline {
     options {
         timestamps()
     }
