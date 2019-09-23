@@ -1,11 +1,11 @@
 import jenkins.model.Jenkins
 echo "${JOB_NAME}"
 
-def PrevBuildNum = currentBuild.previousBuild.number;
+def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
 def LastGoodBuild = 0
-def build = currentBuild.previousBuild
+def build = currentBuild.previousBuild ?: "0"
 while (build != null) {
       if (build.result == "SUCCESS")
       {
