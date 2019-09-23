@@ -33,6 +33,7 @@ if ( Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number ) {
    LastGoodBuild = "0"
 }
 }
+
 pipeline {
     options {
         timestamps()
