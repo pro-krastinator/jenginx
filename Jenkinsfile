@@ -1,7 +1,7 @@
 import jenkins.model.Jenkins
 echo "${JOB_NAME}"
-node {
-
+pipeline {
+   script {
 def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
@@ -20,8 +20,8 @@ sh 'exit 0'
 }
 }
 echo "Last successful Build ID is:  ${LastGoodBuild}"
-
-pipeline {
+}
+//pipeline {
     options {
         timestamps()
     }
