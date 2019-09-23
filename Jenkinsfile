@@ -11,7 +11,10 @@ def CurrBuild = currentBuild.number;
 def jenkins = Jenkins.getInstance()
 //def jobName = "${DEV_PROJECT_NAME}"
 def job = jenkins.getItem("${JOB_NAME}")
-println "Last successfull build: ${job.getLastSuccessfulBuild()}"
+LastGoodBuild = ${job.getLastSuccessfulBuild()}" 
+if ( LastGoodBuild == null ) {
+   LastGoodBuild = 0 
+} 
 
 /*
 if ( Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number !=NULL ) {
