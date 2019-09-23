@@ -6,9 +6,6 @@ echo "${JOB_NAME}"
 
 def PrevBuildNum = currentBuild.previousBuild.number;
 def CurrBuild = currentBuild.number;
-
-def PrevBuildNum = currentBuild.previousBuild.number;
-def CurrBuild = currentBuild.number;
 def LastGoodBuild = "0";
 
 //def jenkins = Jenkins.getInstance()
