@@ -22,7 +22,7 @@ if (!LastGoodBuild || LastGoodBuild !=null) {
 	LastGoodBuild = 0
 } 
 */
-
+Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number = 0;
 def LastGoodBuild = 0;
 catchError(buildResult: 'SUCCESS') {
 if (Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number) {
