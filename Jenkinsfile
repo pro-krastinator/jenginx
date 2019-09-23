@@ -1,12 +1,12 @@
 import jenkins.model.Jenkins
 echo "${JOB_NAME}"
-/*
-if (currentBuild.previousBuild.number != null) {
+
+if (currentBuild.previousBuild.number != null || currentBuild.previousBuild != null ) {
    def PrevBuildNum = currentBuild.previousBuild.number
 } else {
    def PrevBuildNum = 0
 }
-*/
+
 def CurrBuild = currentBuild.number;
 /*
 def LastGoodBuild = 0;
