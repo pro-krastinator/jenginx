@@ -5,9 +5,9 @@ def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
 def LastGoodBuild = 0
-
+try {
 LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number ?: "0"
-
+}
 echo "Last successful Build ID is:  ${LastGoodBuild}"
 
 pipeline {
