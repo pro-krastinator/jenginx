@@ -5,7 +5,7 @@ def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
 def LastGoodBuild = 0
-catchError(buildResult: 'SUCCESS', message: 'Here is dirty hack - I am not able to wrap null variables') {
+catchError(buildResult: 'SUCCESS') {
 def build = currentBuild.previousBuild ?: "0"
 while (build != null) {
       if (build.result == "SUCCESS")
