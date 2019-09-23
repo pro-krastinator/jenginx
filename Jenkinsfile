@@ -18,6 +18,7 @@ def LastGoodBuild(build) {
 }
 LastGoodBuild(currentBuild.getPreviousBuild());
 */
+catchError(buildResult: 'SUCCESS') {
 passedBuilds = []
 def lastSuccessfullBuild(build) {
     if(build != null && build.result != 'FAILURE') {
@@ -34,7 +35,7 @@ if ( lastSuccessfullBuild(currentBuild.getPreviousBuild()) != null) {
 		def LastGoodBuild = "0";
 		print LastGoodBuild;
 	}
-
+}
 pipeline {
     options {
         timestamps()
