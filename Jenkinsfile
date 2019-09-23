@@ -1,35 +1,21 @@
 import jenkins.model.Jenkins
 echo "${JOB_NAME}"
 
-//def BuildNum = $BUILD_NUMBER as Integer
-//def PREV_BUILD_NUMBER = BuildNum-1
-
 def PrevBuildNum = currentBuild.previousBuild.number;
 def CurrBuild = currentBuild.number;
-def LastGoodBuild = "0";
 
-//def jenkins = Jenkins.getInstance()
-//def jobName = "${DEV_PROJECT_NAME}"
-//def job = jenkins.getItem("${JOB_NAME}")
-//LastGoodBuild = ${job.getLastSuccessfulBuild()}
-//if ( LastGoodBuild == null ) {
-//   LastGoodBuild = 0 
-//} 
-//echo 'LastGoodBuild = 0'
-//LastGoodBuild = 0
-//echo 'println LastGoodBuild'
-//println LastGoodBuild
-
-//echo "${Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number}"
-catchError(buildResult: 'SUCCESS') {
-    // some block
-
-if ( Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number ) {
-   LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number 
-} else {
-   LastGoodBuild = "0"
+def LastGoodBuild = 0
+def build = currentBuild.previousBuild
+while (build != null) {
+      if (build.result == "SUCCESS")
+      {
+          LastGoodBuild = build.id as Integer
+          break
+      }
+      build = build.previousBuild
 }
-}
+
+echo "Last successful Build ID is:  ${LastGoodBuild}"
 
 pipeline {
     options {
