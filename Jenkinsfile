@@ -15,18 +15,19 @@ def CurrBuild = currentBuild.number;
 //if ( LastGoodBuild == null ) {
 //   LastGoodBuild = 0 
 //} 
-echo 'LastGoodBuild = 0'
-LastGoodBuild = 0
-echo 'println LastGoodBuild'
-println LastGoodBuild
+//echo 'LastGoodBuild = 0'
+//LastGoodBuild = 0
+//echo 'println LastGoodBuild'
+//println LastGoodBuild
 
-/*
-if ( Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number !=NULL ) {
+echo "${Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number}"
+
+if ( Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number ) {
    def LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number;
 } else {
    def LastGoodBuild = 0
 }
-*/
+
 
 //def BuildNum = CurrBuild
 pipeline {
