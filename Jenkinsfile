@@ -1,5 +1,6 @@
 import jenkins.model.Jenkins
 echo "${JOB_NAME}"
+node {
 
 def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
@@ -17,7 +18,7 @@ while (build != null) {
 }
 sh 'exit 0'
 }
-
+}
 echo "Last successful Build ID is:  ${LastGoodBuild}"
 
 pipeline {
