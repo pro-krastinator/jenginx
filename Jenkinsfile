@@ -4,13 +4,18 @@ echo "${JOB_NAME}"
 def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
-
-def this_job = Jenkins.instance.getItemByFullName("$JOB_NAME")
-
-def LastGoodBuild = this_job.getLastSuccessfulBuild().getNumber() != null ? this_job.getLastSuccessfulBuild().getNumber() : "0"
+def LastGoodBuild = 0
+def build = currentBuild.previousBuild
+while (build != null) {
+      if (build.result == "SUCCESS")
+      {
+         LastGoodBuild = build.id as Integer
+         break
+      }
+      build = build.previousBuild
+}
 
 println LastGoodBuild
-
 
 pipeline {
     options {
