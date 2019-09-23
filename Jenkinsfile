@@ -4,8 +4,8 @@ echo "${JOB_NAME}"
 def PrevBuildNum = currentBuild.previousBuild.number ?: "0"
 def CurrBuild = currentBuild.number;
 
-def LastGoodBuild = 0
-def build = currentBuild.previousBuild
+def LastGoodBuild = 0;
+def build = currentBuild.previousBuild ?: "0"
 while (build != null) {
       if (build.result == "SUCCESS")
       {
@@ -15,7 +15,7 @@ while (build != null) {
       build = build.previousBuild
 }
 
-println LastGoodBuild
+echo "Last Goodd Build ID: ${LastGoodBuild}"
 
 pipeline {
     options {
