@@ -16,13 +16,13 @@ while (build != null) {
 }
 */
 
-if ( PrevBuildNum !=null ) {
-  def LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number as Integer || exit 0
-} else {
-  def LastGoodBuild = 0
+try {
+    def LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number;
 }
-
-
+catch (err){
+    echo "There is no previious successfull Builds yet"
+    LastGoodBuild = 0
+   }
 echo "Last Goodd Build ID: ${LastGoodBuild}"
 
 pipeline {
