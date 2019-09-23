@@ -8,8 +8,10 @@ def LastGoodBuild = 0
 try {
 LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number ?: "0"
 }
-echo "Last successful Build ID is:  ${LastGoodBuild}"
-
+catch {
+echo "Last successful Build ID is:  ${LastGoodBuild}" 
+sh 'exit 0'
+}
 pipeline {
     options {
         timestamps()
