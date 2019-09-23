@@ -14,7 +14,7 @@ catchError(buildResult: 'SUCCESS') {
     PrevBuildNum = 0
     echo "${PrevBuildNum = 0}"
 }
-*/
+
 def CurrBuild = currentBuild.number;
 /*
 def LastGoodBuild = 0;
