@@ -10,7 +10,7 @@ if (currentBuild.previousBuild.number != null || currentBuild.previousBuild != n
    def PrevBuildNum = 0
 }
 }
-catchError(buildResult: 'SUCCESS') {
+catch {
     PrevBuildNum = 0
     echo "${PrevBuildNum = 0}"
 }
