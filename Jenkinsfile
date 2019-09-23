@@ -1,6 +1,9 @@
 import jenkins.model.Jenkins
 echo "${JOB_NAME}"
 
+echo "n {currentBuild.previousBuild.number}"
+echo "b {currentBuild.previousBuild}"
+
 if (currentBuild.previousBuild.number != null || currentBuild.previousBuild != null ) {
    def PrevBuildNum = currentBuild.previousBuild.number
 } else {
