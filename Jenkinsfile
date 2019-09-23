@@ -21,14 +21,16 @@ if (!LastGoodBuild || LastGoodBuild !=null) {
 	LastGoodBuild = 0
 } 
 
-/*
+
 def LastGoodBuild = 0;
 catchError(buildResult: 'SUCCESS') {
-  LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number !=null ? Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number : "0";
-  currentBuild.result = 'SUCCESS'
+if (Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number) {
+  LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number;
   sh 'exit 0'  
+} else {
+  LastGoodBuild = 0
 }
-*/
+}
 
 echo "Last Goodd Build ID: ${LastGoodBuild}"
 
