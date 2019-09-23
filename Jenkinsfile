@@ -16,22 +16,12 @@ while (build != null) {
 }
 */
 
-/*
-def LastGoodBuild  = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild();
-if (!LastGoodBuild || LastGoodBuild !=null) {
-	LastGoodBuild = 0
-} 
-*/
-Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number = 0;
-def LastGoodBuild = 0;
-catchError(buildResult: 'SUCCESS') {
-if (Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number) {
-  LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number;
-  sh 'exit 0'  
+if ( lastSuccessfulBuild !=null ) {
+  def LastGoodBuild = Jenkins.instance.getItem("${JOB_NAME}").lastSuccessfulBuild.number;
 } else {
-  LastGoodBuild = 0
+  def LastGoodBuild = 0
 }
-}
+
 
 echo "Last Goodd Build ID: ${LastGoodBuild}"
 
